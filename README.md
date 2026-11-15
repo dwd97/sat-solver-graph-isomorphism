@@ -13,21 +13,23 @@ problém: [graph isomorphism wikipedia](https://en.wikipedia.org/wiki/Graph_isom
 
 počet vrcholů a počet hran pak seznam hran mezi vrcholy, takhle pro oba grafy hned za sebou
 
-obecně:
+#### obecně:
+
 
 ```
-n_{0} k_{0}
+n_{0} m_{0}
 u_{0} v_{0}
 ...
-u_{k_{0}-1} v_{k_{0}-1}
-n_{1} k_{1}
+u_{m_{0}-1} v_{m_{0}-1}
+n_{1} m_{1}
 u_{0} v_{0}
 ...
-u_{k_{1}-1} v_{k_{1}-1}
+u_{m_{1}-1} v_{m_{1}-1}
 ```
-příklad:
+kde $G_0 = (V_{0}, E_{0})$ a $m_{0} = |E_{0}|$ a $n_{0} = |V_{0}|$ a k-tý řádek $u_{k} v_{k} \iff \{u_k, v_k\} \in E_{0}$ .Totožně pro $G_1$
 
-- pro příklad z wikipedie:
+#### příklad (z wikipedie):
+
 ![graph isomorphism](./priklad_wikipedie.png)
 [odkaz](https://en.wikipedia.org/wiki/File:Graph_isomorphisms.svg)
 
@@ -59,3 +61,21 @@ příklad:
 3 6
 3 7
 ```
+
+### popis:
+
+- potřeba najít takovou permutaci vrcholů z prvního grafu do druhého takovou, že se zachovají hrany mezi příslušnými vrcholy
+- Definuji si grafy $G_{0} = (V_{0}, E_{0})$ a $G_{1} = (V_{1}, E_{1})$
+- proměnná $p_{i,j}$
+    - znamená, že vrchol $v_i \in V_0$ promítnu na $v_j \in V_1$
+
+#### klauzule:
+
+- alespon jedno promítnutí z vrcholu $v_i \in V_0$ na vrchol $v_j \in V_1$
+    - $\bigwedge_{i=0}^{n-1} \bigvee_{j=0}^{n-1}p_{i,j}$
+
+- nejvýše jedno promítnutí z vrcholu $v_i \in V_0$ na vrchol $v_j \in V_1$
+    - $\bigwedge_{i=0}^{n-1} \bigwedge_{0 \leq j < k \leq n-1}( \lnot p_{i,j} \lor \lnot p_{i,k})$
+
+- zakázat dvojice promítnutí, kdy bud v prvním nebo ve druhém grafu neexistuje mezi oběma vrcholy hrana
+    - $(\lnot p_{a,b} \lor \lnot p_{c,d})$ pokud $(\{a,c\} \in E_0 \land \{b,d\} \notin E_1) \lor (\{a,c\} \notin E_0 \land \{b,d\} \in E_1)$
