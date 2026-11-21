@@ -115,7 +115,7 @@ if __name__ == "__main__":
     parser.add_argument(
        "-i",
        "--input",
-       default="/input0.in",
+       default="sample_inputs/input0.in",
        type=str,
        help=(
             "The instance file."
@@ -156,7 +156,7 @@ if __name__ == "__main__":
     
     instance = load_instance(args.input)
     if(instance is False):
-        print("Not a valid input! Number of vertices or number of edges are not correct.")
+        print("Not a valid input!")
         sys.exit(1)
 
     cnf, nr_vars = encode(instance)
