@@ -11,13 +11,27 @@ problém: [graph isomorphism wikipedia](https://en.wikipedia.org/wiki/Graph_isom
 
 `python3 graph_isomorphism.py -i input.in`
 
+argumenty:
+
+- `-i` / `--input` vstupní soubor
+
+- `-o` / `--output` výstupní soubor cnf formule
+
+- `-v` / `--verb` podrobnější výpis
+
+- `-s` / `--solver` defaultně je glucose
+
 předpřipravené vstupy:
 
-- `sample_inputs/input0.in` - 
+- `sample_inputs/input0.in` 
 
-- `sample_inputs/input1.in` - Najde přejmenování
+- `sample_inputs/input1.in`
 
-- `sample_inputs/not_isomorphism.in` - Není izomorfismus
+- `sample_inputs/input2.in`
+
+- `sample_inputs/input3.in`
+
+- `sample_inputs/not_isomorphism.in`
 
 ## zakodování:
 

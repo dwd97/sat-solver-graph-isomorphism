@@ -88,6 +88,9 @@ def call_solver(output_name, solver_name, verbosity):
     return subprocess.run(['./' + solver_name, '-model', '-verb=' + str(verbosity), output_name], stdout=subprocess.PIPE)
 
 def print_result(result):
+    for line in result.stdout.decode('utf-8').split('\n'):
+        print(line)
+
     if(result.returncode == 20):
         print("Unsatisfiable")
         return
