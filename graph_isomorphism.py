@@ -72,6 +72,12 @@ def is_edge(i,j,EDGES):
 def v(i,j):
     return i*NR_VERTICES_0 + j + 1
 
+def v_reverse(n):
+    n -= 1
+    i = n // NR_VERTICES_0
+    j = n % NR_VERTICES_0
+    return (i,j)
+
 def generate_file(cnf, nr_vars, output_name):
     with open(output_name, "w") as f:
         f.write("p cnf " + str(nr_vars) + " " + str(len(cnf)) + '\n')
@@ -82,7 +88,23 @@ def call_solver(output_name, solver_name, verbosity):
     return subprocess.run(['./' + solver_name, '-model', '-verb=' + str(verbosity), output_name], stdout=subprocess.PIPE)
 
 def print_result(result):
-    pass
+    if(result.returncode == 20):
+        print("Unsatisfiable")
+        return
+    
+    model = []
+    for line in result.stdout.decode('utf-8').split('\n'):
+        if line.startswith("v"):
+            vars = line.split(" ")
+            vars.remove("v")
+            model.extend(int(v) for v in vars)
+    model.remove(0)
+    
+    print("Izomorfní přejmenování vrcholů")
+    for var in model:
+        if(var > 0):
+            (i,j) = v_reverse(var)
+            print(f"{i}->{j}")
 
 if __name__ == "__main__":
     parser = ArgumentParser()
@@ -90,7 +112,7 @@ if __name__ == "__main__":
     parser.add_argument(
        "-i",
        "--input",
-       default="input1.in",
+       default="input0.in",
        type=str,
        help=(
             "The instance file."
@@ -119,7 +141,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "-v",
         "--verb",
-        default=1,
+        default=0,
         type=int,
         choices=range(0,2),
         help=(
@@ -138,6 +160,6 @@ if __name__ == "__main__":
     
     generate_file(cnf, nr_vars, args.output)
 
-    # result = call_solver(args.output, args.solver, args.verb)
-
-    # print_result(result)
+    result = call_solver(args.output, args.solver, args.verb)
+    
+    print_result(result)
