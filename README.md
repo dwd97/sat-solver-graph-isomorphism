@@ -1,6 +1,6 @@
 # Graph Isomorphism SAT
 
-- používá þGlucose SAT solver](https://github.com/audemard/glucose)
+- používá [Glucose SAT solver](https://github.com/audemard/glucose)
 
 ## zadání
 
