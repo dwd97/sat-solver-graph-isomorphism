@@ -7,6 +7,18 @@
 zadání: [sat projekt](https://ktiml.mff.cuni.cz/~svancara/files/sat-projekt.pdf)
 problém: [graph isomorphism wikipedia](https://en.wikipedia.org/wiki/Graph_isomorphism_problem)
 
+## použití:
+
+`python3 graph_isomorphism.py -i input.in`
+
+předpřipravené vstupy:
+
+- `sample_inputs/input0.in` - 
+
+- `sample_inputs/input1.in` - Najde přejmenování
+
+- `sample_inputs/not_isomorphism.in` - Není izomorfismus
+
 ## zakodování:
 
 ### vstup
@@ -60,6 +72,22 @@ kde $G_0 = (V_{0}, E_{0})$ a $m_{0} = |E_{0}|$ a $n_{0} = |V_{0}|$ a k-tý řád
 3 5
 3 6
 3 7
+```
+
+### výstup:
+
+- jedno možné přejmenování
+
+```
+Izomorfní přejmenování vrcholů
+0->3
+1->5
+2->7
+3->1
+4->6
+5->0
+6->2
+7->4
 ```
 
 ### popis:
