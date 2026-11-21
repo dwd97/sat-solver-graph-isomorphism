@@ -33,6 +33,8 @@ předpřipravené vstupy:
 
 - `sample_inputs/not_isomorphism.in`
 
+- `sample_inputs/big.in` - generován pomocí `create_big_input.py`. Čím větší vstup, tím déle trvá nalézt model.
+    - Zkoušel úplný graf, kružnici s velkým počtem vrcholů i cestu s větším počtem vrcholů, přes 10 sekund jsem se nedostal. Nejvíc bylo 5 sekund s cestou o 90 vrcholech.
 ## zakodování:
 
 ### vstup
